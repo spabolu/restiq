@@ -7,11 +7,25 @@
 
 import SwiftUI
 
+import SwiftUI
+
 @main
-struct restiqApp: App {
+struct RestiqApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .frame(minWidth: 600, minHeight: 400)
+                .onAppear {
+                    setWindowConstraints()
+                }
+        }
+    }
+
+    private func setWindowConstraints() {
+        DispatchQueue.main.async {
+            if let window = NSApplication.shared.windows.first {
+                window.minSize = NSSize(width: 600, height: 400)
+            }
         }
     }
 }
